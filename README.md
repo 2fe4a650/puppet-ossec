@@ -120,11 +120,13 @@ Enabling SELinux support requires [jfryman/selinux](https://forge.puppetlabs.com
 
 ## Development
 
-This module was forked from `nzin/puppet-ossec` so I could package it for Puppet Forge. The
-original author is [not willing to maintain the code](https://github.com/nzin/puppet-ossec/issues/3)
-so please contribute to this fork.
+This module was forked from `djjudas21/puppet-ossec` which was itself
+forked from `nzin/puppet-ossec`. The purpose of this fork was to separate
+Debian and Red Hat log specifics and to make the rootcheck optional.
+
 
 ## Release Notes
 
 Author Nicolas Zin
-Maintained by Jonathan Gazeley
+Enhanced by Jonathan Gazeley
+Maintained by Thomas Hays
