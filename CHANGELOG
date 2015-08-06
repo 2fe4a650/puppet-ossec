@@ -59,3 +59,9 @@
  Jonathan Gazeley <jonathan.gazeley@bristol.ac.uk>:
   * Fix log directory permissions
 
+2015-08-06 Thomas Hays <git@thays.com> - 1.6.3
+===========================================================
+
+ Thomas Hays <git@thays.com>:
+  * Made rootcheck optional
+  * Added default Red Hat log file names.

@@ -4,6 +4,7 @@ class ossec::server (
   $ossec_emailto,
   $ossec_emailfrom                     = "ossec@${::domain}",
   $ossec_active_response               = true,
+  $ossec_rootcheck                     = true,
   $ossec_global_host_information_level = 8,
   $ossec_global_stat_level             = 8,
   $ossec_email_alert_level             = 7,

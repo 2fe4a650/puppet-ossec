@@ -1,6 +1,7 @@
 # Setup for ossec client
 class ossec::client(
   $ossec_active_response   = true,
+  $ossec_rootcheck   = true,
   $ossec_server_ip,
   $ossec_emailnotification = "yes",
   $selinux = false,
