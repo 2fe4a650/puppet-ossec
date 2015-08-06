@@ -140,22 +140,7 @@
   </alerts>
   <!-- Files to monitor (localfiles) -->
 
-  <localfile>
-    <log_format>syslog</log_format>
-    <location>/var/log/messages</location>
-  </localfile>
-
-  <localfile>
-    <log_format>syslog</log_format>
-    <location>/var/log/maillog</location>
-  </localfile>
-
   <% if @osfamily == "Debian" then %>
-  <localfile>
-    <log_format>syslog</log_format>
-    <location>/var/log/auth.log</location>
-  </localfile>
-
   <localfile>
     <log_format>syslog</log_format>
     <location>/var/log/syslog</location>
@@ -163,7 +148,12 @@
 
   <localfile>
     <log_format>syslog</log_format>
-    <location>/var/log/mail.info</location>
+    <location>/var/log/auth.log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/mail.log</location>
   </localfile>
   
   <localfile>
@@ -175,9 +165,19 @@
   <% if @osfamily == "RedHat" then %>
   <localfile>
     <log_format>syslog</log_format>
+    <location>/var/log/messages</location>
+  </localfile>
+
+  <localfile>
+    <log_format>syslog</log_format>
     <location>/var/log/secure</location>
   </localfile>
-  
+
+  <localfile>
+    <log_format>syslog</log_format>
+    <location>/var/log/maillog</location>
+  </localfile>
+
   <localfile>
     <log_format>syslog</log_format>
     <location>/var/log/yum.log</location>
