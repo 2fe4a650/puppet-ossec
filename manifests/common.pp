@@ -58,7 +58,7 @@ class ossec::common {
       }
 
       # Set up EPEL repo
-      #include epel
+      include epel
 
       $hidsagentservice  = 'ossec-hids'
       $hidsagentpackage  = 'ossec-hids-client'
