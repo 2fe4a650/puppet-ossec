@@ -1,0 +1,99 @@
+<!-- @(#) $Id: ./etc/rules/local_rules.xml, 2011/09/08 dcid Exp $
+
+  -  Example of local rules for OSSEC.
+  -
+  -  Copyright (C) 2009 Trend Micro Inc.
+  -  All rights reserved.
+  -
+  -  This program is a free software; you can redistribute it
+  -  and/or modify it under the terms of the GNU General Public
+  -  License (version 2) as published by the FSF - Free Software
+  -  Foundation.
+  -
+  -  License details: http://www.ossec.net/en/licensing.html
+  -->
+
+
+<!-- Modify it at your will. -->
+
+<group name="local,syslog,">
+
+  <!-- Note that rule id 5711 is defined at the ssh_rules file
+    -  as a ssh failed login. This is just an example
+    -  since ip 1.1.1.1 shouldn't be used anywhere.
+    -  Level 0 means ignore.
+    -->
+  <rule id="100001" level="0">
+    <if_sid>5711</if_sid>
+    <srcip>1.1.1.1</srcip>
+    <description>Example of rule that will ignore sshd </description>
+    <description>failed logins from IP 1.1.1.1.</description>
+  </rule>
+  
+  
+  <!-- This example will ignore ssh failed logins for the user name XYZABC.
+    -->
+  <!--  
+  <rule id="100020" level="0">
+    <if_sid>5711</if_sid>
+    <user>XYZABC</user>
+    <description>Example of rule that will ignore sshd </description>
+    <description>failed logins for user XYZABC.</description>
+  </rule>
+  -->
+  
+  
+  <!-- Specify here a list of rules to ignore. -->
+  <!--
+  <rule id="100030" level="0">
+    <if_sid>12345, 23456, xyz, abc</if_sid>
+    <description>List of rules to be ignored.</description>
+  </rule>
+  -->
+
+  <rule id="100007" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Classes\batfile"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100008" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Classes\cmdfile"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100009" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Classes\comfile"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100010" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Classes\exefile"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100011" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Classes\piffile"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100012" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Classes\AllFilesystemObjects"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100013" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Classes\Directory"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100014" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Classes\Folder"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100015" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Classes\Protocols"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100016" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Policies"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100017" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Microsoft\Internet Explorer"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100018" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\CurrentControlSet\Services"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100019" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\CurrentControlSet\Session Manager\KnownDLLs"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100020" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\CurrentControlSet\SecurePipeServers\winreg"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100021" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100022" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100023" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\URL"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100024" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100025" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100026" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+  <rule id="100027" level="8"> <if_sid>530</if_sid> <match>ossec: output: 'reg query "HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components"</match> <check_diff /><description>Windows Registry Change</description> </rule>
+
+</group> <!-- SYSLOG,LOCAL -->
+
+
+<!-- EOF -->

@@ -54,11 +54,10 @@ class ossec::common {
         mirrorlist => 'http://updates.atomicorp.com/channels/mirrorlist/ossec/centos-$releasever-$basearch',
         priority   => 1,
         protect    => false,
-        require    => [ File['RPM-GPG-KEY.ossec.txt'], Class['epel'] ]
       }
 
       # Set up EPEL repo
-      include epel
+      #include epel
 
       $hidsagentservice  = 'ossec-hids'
       $hidsagentpackage  = 'ossec-hids-client'
@@ -73,7 +72,6 @@ class ossec::common {
       }
       package { 'inotify-tools':
         ensure  => present,
-        require => Class['epel'],
       }
     }
     default: { fail('This ossec module has not been tested on your distribution') }
