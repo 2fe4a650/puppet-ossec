@@ -25,7 +25,7 @@ class ossec::server (
     }
     'RedHat' : {
       case $::operatingsystem {
-        'CentOS' : {
+        'RedHat', 'CentOS', 'OracleLinux' : {
           case $::operatingsystemmajrelease {
             '7' : {
               if ( $ossec_mysql  == true ) {
@@ -65,20 +65,6 @@ class ossec::server (
                 }
               }
             }
-          }
-        }
-        'RedHat' : {
-          package { $ossec::common::hidsserverpackage:
-            ensure  => installed,
-            require => Package['mysql'],
-          }
-          package { 'mysql': ensure => present }
-          package { 'ossec-hids':
-            ensure   => installed,
-          }
-          package { $ossec::common::hidsserverpackage:
-            ensure  => installed,
-            require => Package['mysql'],
           }
         }
       }
