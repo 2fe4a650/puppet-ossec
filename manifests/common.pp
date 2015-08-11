@@ -46,11 +46,16 @@ class ossec::common {
       }
 
       # Set up OSSEC repo
+      if( $releasever == "7Server" ) {
+        $local_releasever = "7"
+      } else {
+        $local_releasever = $releasever
+      }
       yumrepo { 'ossec':
         descr      => 'CentOS / Red Hat Enterprise Linux $releasever - ossec.net',
         enabled    => true,
         gpgkey     => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY.ossec.txt',
-        mirrorlist => 'http://updates.atomicorp.com/channels/mirrorlist/ossec/centos-$releasever-$basearch',
+        mirrorlist => 'http://updates.atomicorp.com/channels/mirrorlist/ossec/centos-$local_releasever-$basearch',
         priority   => 1,
         protect    => false,
       }
