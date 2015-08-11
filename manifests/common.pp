@@ -57,31 +57,31 @@ class ossec::common {
 
       # Set up EPEL repo
       #include epel
-      if $::operatingsystemmajrelease {
-        $os_maj_release = $::operatingsystemmajrelease
-      } else {
-        $os_versions    = split($::operatingsystemrelease, '[.]')
-        $os_maj_release = $os_versions[0]
-      }
+#      if $::operatingsystemmajrelease {
+#        $os_maj_release = $::operatingsystemmajrelease
+#      } else {
+#        $os_versions    = split($::operatingsystemrelease, '[.]')
+#        $os_maj_release = $os_versions[0]
+#      }
 
-      $epel_mirrorlist                        = "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-${os_maj_release}&arch=\$basearch"
-      $epel_baseurl                           = 'absent'
-      $epel_failovermethod                    = 'priority'
-      $epel_proxy                             = 'absent'
-      $epel_enabled                           = '1'
-      $epel_gpgcheck                          = '1'
+#      $epel_mirrorlist                        = "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-${os_maj_release}&arch=\$basearch"
+#      $epel_baseurl                           = 'absent'
+#      $epel_failovermethod                    = 'priority'
+#      $epel_proxy                             = 'absent'
+#      $epel_enabled                           = '1'
+#      $epel_gpgcheck                          = '1'
 
-      yumrepo { 'epel':
-        mirrorlist     => $epel_mirrorlist,
-        baseurl        => $epel_baseurl,
-        failovermethod => $epel_failovermethod,
-        proxy          => $epel_proxy,
-        enabled        => $epel_enabled,
-        gpgcheck       => $epel_gpgcheck,
-#        gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${os_maj_release}",
-        gpgkey         => "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-${os_maj_release}",
-        descr          => "Extra Packages for Enterprise Linux ${os_maj_release} - \$basearch",
-      }
+#      yumrepo { 'epel':
+#        mirrorlist     => $epel_mirrorlist,
+#        baseurl        => $epel_baseurl,
+#        failovermethod => $epel_failovermethod,
+#        proxy          => $epel_proxy,
+#        enabled        => $epel_enabled,
+#        gpgcheck       => $epel_gpgcheck,
+##        gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${os_maj_release}",
+#        gpgkey         => "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-${os_maj_release}",
+#        descr          => "Extra Packages for Enterprise Linux ${os_maj_release} - \$basearch",
+#      }
 
 
       $hidsagentservice  = 'ossec-hids'
@@ -97,6 +97,7 @@ class ossec::common {
       }
       package { 'inotify-tools':
         ensure  => present,
+        require => Yumrepo["epel"],
       }
     }
     default: { fail('This ossec module has not been tested on your distribution') }
