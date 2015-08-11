@@ -27,7 +27,6 @@ class ossec::common {
             key         => '9A1B1C65',
             key_source  => 'http://ossec.alienvault.com/repos/apt/conf/ossec-key.gpg.key',
           }
-          ~>
           exec { 'update-apt-alienvault-repo':
             command     => '/usr/bin/apt-get update',
             refreshonly => true
@@ -58,6 +57,32 @@ class ossec::common {
 
       # Set up EPEL repo
       #include epel
+      if $::operatingsystemmajrelease {
+        $os_maj_release = $::operatingsystemmajrelease
+      } else {
+        $os_versions    = split($::operatingsystemrelease, '[.]')
+        $os_maj_release = $os_versions[0]
+      }
+
+      $epel_mirrorlist                        = "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-${os_maj_release}&arch=\$basearch"
+      $epel_baseurl                           = 'absent'
+      $epel_failovermethod                    = 'priority'
+      $epel_proxy                             = 'absent'
+      $epel_enabled                           = '1'
+      $epel_gpgcheck                          = '1'
+
+      yumrepo { 'epel':
+        mirrorlist     => $epel_mirrorlist,
+        baseurl        => $epel_baseurl,
+        failovermethod => $epel_failovermethod,
+        proxy          => $epel_proxy,
+        enabled        => $epel_enabled,
+        gpgcheck       => $epel_gpgcheck,
+#        gpgkey         => "file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-${os_maj_release}",
+        gpgkey         => "https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-${os_maj_release}",
+        descr          => "Extra Packages for Enterprise Linux ${os_maj_release} - \$basearch",
+      }
+
 
       $hidsagentservice  = 'ossec-hids'
       $hidsagentpackage  = 'ossec-hids-client'
