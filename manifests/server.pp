@@ -78,6 +78,7 @@ class ossec::server (
     hasstatus => $ossec::common::servicehasstatus,
     pattern   => $ossec::common::hidsserverservice,
     require   => Package[$ossec::common::hidsserverpackage],
+    provider  => $ossec::common::provider,
   }
 
   # configure ossec

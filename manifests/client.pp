@@ -34,6 +34,7 @@ class ossec::client(
     hasstatus => $ossec::common::servicehasstatus,
     pattern   => $ossec::common::hidsagentservice,
     require   => Package[$ossec::common::hidsagentpackage],
+    provider  => $ossec::common::provider,
   }
 
   concat { '/var/ossec/etc/ossec.conf':

@@ -94,6 +94,11 @@ class ossec::common {
       $hidsserverservice = 'ossec-hids'
       $hidsserverpackage = 'ossec-hids-server'
       $servicehasstatus  = true
+
+      if ($::operatingsystemmajrelease=="7") {
+        $provider = 'redhat'
+      }
+
       case $::operatingsystemrelease {
         /^5/:    {$redhatversion='el5'}
         /^6/:    {$redhatversion='el6'}
